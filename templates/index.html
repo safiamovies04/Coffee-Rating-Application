@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Rating Application</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>☕ Coffee Rating Application</h1>
+
+        <div class="top-coffee">
+            <h3>🏆 Most Popular Coffee</h3>
+
+            {% if top_coffee %}
+                <p>
+                    <strong>{{ top_coffee[0] }}</strong> - {{ top_coffee[1] }} Votes
+                </p>
+            {% endif %}
+        </div>
+
+        <div id="coffeeList">
+
+            {% for coffee in coffees %}
+
+            <div class="coffee-card">
+
+                <div>
+                    <h2>{{ coffee[1] }}</h2>
+
+                    <p>
+                        Votes:
+                        <span id="votes{{ coffee[0] }}">
+                            {{ coffee[2] }}
+                        </span>
+                    </p>
+                </div>
+
+                <button onclick="vote({{ coffee[0] }})">
+                    Vote
+                </button>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
